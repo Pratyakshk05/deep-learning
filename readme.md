@@ -1,82 +1,138 @@
-# Deep Learning Lab – Experiment 4
 
-## Objective
-To implement Convolutional Neural Networks (CNNs) for image classification using:
-- CIFAR-10 Dataset
-- Cats vs Dogs Dataset
 
-The experiment compares:
-- 3 Activation Functions (ReLU, Tanh, LeakyReLU)
-- 3 Weight Initializations (Xavier, Kaiming, Random)
-- 3 Optimizers (SGD, Adam, RMSprop)
+# 📜 Text Generation using RNN
 
-Additionally, transfer learning using ResNet-18 was performed and compared with the custom CNN.
+**Comparison of One-Hot Encoding vs Trainable Word Embeddings**
 
 ---
 
-## Datasets Used
+## 📌 Objective
 
-1. CIFAR-10
-2. Dogs vs Cats (Kaggle Dataset)
+The objective of this project is to implement a Recurrent Neural Network (RNN) for text generation using:
 
----
+* One-Hot Encoding
+* Trainable Word Embeddings
 
-## Experiment Details
+The goal is to compare both approaches in terms of:
 
-### Custom CNN
-- 3 Convolutional layers
-- Batch Normalization
-- MaxPooling
-- Dropout
-- Fully Connected layers
-
-Total combinations tested: 27
-
-Best configuration (CIFAR-10):
-- Activation: LeakyReLU
-- Initialization: Kaiming
-- Optimizer: Adam
-- Accuracy: 78.43%
+* Training loss
+* Memory efficiency
+* Scalability
+* Quality of generated text
 
 ---
 
-### Transfer Learning – ResNet-18
-- Pretrained on ImageNet
-- Fine-tuned for classification
-- Final layer modified for dataset
+##  Dataset
+
+* Dataset: 100 Poems
+* Format: CSV (`poems-100 - poems-100.csv`)
+* Column Used: `text`
+
+The dataset consists of multiple lines of poetry used to train a next-word prediction model.
 
 ---
 
-## Results Summary
+##  Implementation Details
 
-### CIFAR-10
-| Model | Accuracy |
-|--------|----------|
-| Custom CNN | 78.43% |
-| ResNet-18 | ~85–90% |
+### 🔹 Part 1 – RNN from Scratch (NumPy)
 
-### Cats vs Dogs
-| Model | Accuracy |
-|--------|----------|
-| Custom CNN | ~88–92% |
-| ResNet-18 | ~92–97% |
+A basic RNN was implemented using NumPy to understand:
+
+* Hidden state computation
+* Weight matrices (Wxh, Whh, Why)
+* Forward propagation
+
+This part was for conceptual understanding only.
 
 ---
 
-## Observations
+### 🔹 Part 2 – One-Hot Encoding Approach
 
-- LeakyReLU performed better than ReLU and Tanh.
-- Kaiming initialization worked best with ReLU-family activations.
-- Adam optimizer converged faster and gave higher accuracy.
-- Transfer learning significantly improved performance.
+#### Preprocessing
+
+* Tokenization using whitespace split
+* Vocabulary creation
+* Words converted into index sequences
+* One-hot representation simulated inside model
+
+#### Model Architecture
+
+* RNN layer (`nn.RNN`)
+* Fully connected output layer
+* CrossEntropyLoss
+* Adam optimizer
+
+#### Observations
+
+* Higher memory usage
+* Slower scalability
+* Less coherent generated text
 
 ---
 
+### 🔹 Part 3 – Trainable Word Embeddings Approach
+
+#### Preprocessing
+
+* Tokenization
+* Word-to-index mapping
+* Direct indexed sequences (no one-hot)
+
+#### Model Architecture
+
+* Embedding Layer (`nn.Embedding`)
+* RNN layer
+* Fully connected output layer
+
+#### Observations
+
+* Lower memory usage
+* Better scalability
+* More coherent poetic text generation
+* Smoother loss convergence
 
 ---
 
-## Conclusion
+##  Loss Comparison
 
-Transfer learning with ResNet-18 outperformed the custom CNN model in both datasets. Proper activation-initialization pairing and adaptive optimizers significantly impact performance.
+Both models were trained for multiple epochs and compared.
 
+General observation:
 
+* Embedding model converges more smoothly.
+* One-hot requires more memory.
+* Embedding-based model scales better for larger vocabulary.
+
+---
+
+##  Sample Generated Text
+
+### 🔵 One-Hot Model
+
+```
+love is brush a tree and fast, and the same and downy under the moon on a rhyme? grass of you,
+```
+
+### 🟠 Embedding Model
+
+```
+love my spirit eyes i said, "he thinks he may be dim, joy outposts of old salt and filter and little
+```
+
+The embedding model produced more semantically meaningful and structured text compared to the one-hot model.
+
+---
+
+## 📈 Key Comparison
+
+| Feature           | One-Hot  | Embedding       |
+| ----------------- | -------- | --------------- |
+| Memory Usage      | High     | Low             |
+| Scalability       | Poor     | Good            |
+| Semantic Learning | No       | Yes             |
+| Text Quality      | Moderate | Better          |
+| Practical Use     | Rare     | Standard in NLP |
+
+---
+
+* 🎯 Viva questions & answers for this experiment
