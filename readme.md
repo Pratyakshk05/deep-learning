@@ -135,4 +135,3 @@ The embedding model produced more semantically meaningful and structured text co
 
 ---
 
-* 🎯 Viva questions & answers for this experiment
