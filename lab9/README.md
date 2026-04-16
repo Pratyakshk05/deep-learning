@@ -107,6 +107,14 @@ We compare different architectures, loss functions, and optimizers to study trai
   * Adversarial learning behavior
 
 ---
+## 📊 Experiment Tracking (Weights & Biases)
+
+👉 [View Full Dashboard](https://wandb.ai/pratyakshk05-delhi-technological-university/GAN-Full-Experiment/runs/odwyxecp?nw=nwuserpratyakshk05)
+
+Includes:
+- Loss curves  
+- Generated images  
+- Experiment configs  
 
 ## 🚀 Conclusion
 
@@ -123,16 +131,3 @@ We compare different architectures, loss functions, and optimizers to study trai
 * Trained models (`generator.pth`, `discriminator.pth`)
 * W&B logs for visualization
 
----
-
-## 🔗 Submission Components
-
-* ✅ GitHub Repository (code + README)
-* ✅ Weights & Biases dashboard
-* ✅ Hugging Face model upload
-
----
-
-## 🏁 Final Remark
-
-This experiment demonstrates the practical challenges and strengths of GANs, highlighting the importance of architecture design and training strategies in deep generative models.
